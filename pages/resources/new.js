@@ -52,7 +52,7 @@ const ResourceCreate = ()=>{
                         value={form.description}
                         onChange={handleChange}
                         name="description"
-                        class="textarea"
+                        className="textarea"
                         placeholder="Add description"
                       ></textarea>
                     </div>
