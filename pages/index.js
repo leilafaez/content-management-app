@@ -9,9 +9,9 @@ export default function Home({resources}) {
   return (
 
     <Layout>
-    <ResourceHighlight resources={resources}/>
+    <ResourceHighlight resources={resources.slice(0,2)}/>
     <Newsletter/>
-    <ResourceList resources={resources}/>
+    <ResourceList resources={resources.slice(2)}/>
     <Footer/>
     </Layout>
 
