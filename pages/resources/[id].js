@@ -62,6 +62,7 @@ export async function getStaticProps({ params }) {
     props: {
       resource: data,
     },
+    revalidate :1 //by this option you can do any changes on resource at runtime without any biuld and can see the result after 1sec
   };
 }
 // export async function getServerSideProps({params}){
