@@ -23,16 +23,41 @@ const ResourceDetail = ({ resource }) => {
     </Layout>
   );
 };
+//can work both on the client and server
+// ResourceDetail.getInitialProps = async({query})=>{
+//     const dataRes = await fetch(`http://localhost:3001/api/resources/${query.id}`);
+//     const data = await dataRes.json();
 
-ResourceDetail.getInitialProps = async({query})=>{
-    const dataRes = await fetch(`http://localhost:3001/api/resources/${query.id}`);
-    const data = await dataRes.json();
+//     return {
+//         resource :data
+//     }
+// }
+export async function getStaticPaths(){
+    const resData = await fetch("http://localhost:3001/api/resources");
+    const data = await resData.json();
+    const paths = data.map(resource => {
+        return{
+            params : {id : resource.id}
+        }
+    });
 
-    return {
-        resource :data
+    return{
+        paths,
+        //means that other routes should resolve into 404 page
+        fallback : false
     }
 }
-
+export async function getStaticProps({ params }) {
+  const dataRes = await fetch(
+    `http://localhost:3001/api/resources/${params.id}`
+  );
+  const data = await dataRes.json();
+  return {
+    props: {
+      resource: data,
+    },
+  };
+}
 // export async function getServerSideProps({params}){
 
 //     const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
