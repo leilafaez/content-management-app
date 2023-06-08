@@ -27,7 +27,7 @@ const ResourceForm = ({ onFormSubmit,initialData }) => {
 
   return (
     <div className="resource-form">
-      <h1 className="title">Add New Resource</h1>
+      <h1 className="title">Add/Update New Resource</h1>
       <form>
         <div className="field">
           <label className="label">Title</label>

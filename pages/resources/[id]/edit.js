@@ -1,11 +1,15 @@
 import Layout from "@/components/Layout"
 import ResourceForm from "@/components/ResourceForm";
+import axios from "axios";
 
 const ResourceEdit =({resource})=>{
 
     const updateResource = (FormData)=>{
-        alert(JSON.stringify(FormData))
-    }
+        axios.patch("/api/resources",FormData)
+        .then(alert("Data has been updated!"))
+        .catch((err) => {
+          alert(err?.response?.data);
+    })}
 return (
   <Layout>
     <div className="container">
