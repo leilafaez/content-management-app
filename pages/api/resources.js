@@ -23,7 +23,7 @@ export default async function(req,res){
              return res.send(axiosRes.data);
         }
         catch{
-             return status(422).send("Data cannot be stored!")
+             return res.status(422).send("Data cannot be stored!")
         }
           
     }
