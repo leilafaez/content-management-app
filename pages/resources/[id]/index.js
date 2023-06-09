@@ -11,7 +11,7 @@ const ResourceDetail = ({ resource }) => {
 
   const activeResource =()=>{
     axios.patch("/api/resources",{...resource,status : "active"})
-    .then(_=>alert("Resource has been activated!"))
+    .then(_=>location.reload())
     .catch(_=>alert("cannot activate the resource!"))
   }
 
@@ -38,7 +38,7 @@ const ResourceDetail = ({ resource }) => {
                       onClick={activeResource}
                       className="button is-success ml-1"
                     >
-                      Activated
+                      Activate
                     </button>
                   </div>
                 </div>
@@ -94,9 +94,9 @@ export async function getServerSideProps({ params }) {
   const data = await dataRes.json();
   return {
     props: {
-      resource: data,
-    },
-  };
+      resource: data
+    }
+  }
 }
 
 export default ResourceDetail;

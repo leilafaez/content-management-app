@@ -28,8 +28,8 @@ export async function getServerSideProps() {
   return {
     props: {
       resources: data,
-    },
-  };
+    }
+  }
 }
 
 // is called at the build time, and it's called only once
