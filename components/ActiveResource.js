@@ -6,8 +6,9 @@ import moment from "moment/moment";
 const ActiveResource =()=>{
 
     const [resource,setResource]=useState({});
-    const [second,setSecond]=useState(12);
+    const [second,setSecond]=useState();
 
+    
     useEffect(()=>{
        async function fetchResource(){
         const axiosRes = await axios.get("/api/activeResource");
@@ -35,6 +36,13 @@ const ActiveResource =()=>{
         return()=>clearInterval(interval);
     },[second])
 
+    const completeResource = () => {
+    axios
+        .patch("/api/resources", { ...resource, status: "complete" })
+        .then((_) => location.reload())
+        .catch((_) => alert("cannot complete the resource!"));
+    };
+
     const hasResource =resource && resource.id;
 
     return (
@@ -48,12 +56,17 @@ const ActiveResource =()=>{
               <h2 className="elapsed-time">{second}</h2>
             ) : (
               <h2 className="elapsed-time">
-                <button className="button is-success">Click and Done!</button>
+                <button
+                  className="button is-success"
+                  onClick={completeResource}
+                >
+                  Click and Done!
+                </button>
               </h2>
             ))}
         </div>
         {hasResource ? (
-          <Link legacyBehavior href="/">
+          <Link legacyBehavior href={`/resources/${resource.id}`}>
             <a className="button">go to Resource</a>
           </Link>
         ) : (
