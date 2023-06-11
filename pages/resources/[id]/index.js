@@ -2,6 +2,8 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 // import { useRouter } from "next/router";
 import axios from "axios";
+import ResourceLable from "@/components/ResourceLable";
+import moment from "moment";
 
 const ResourceDetail = ({ resource }) => {
   // const router = useRouter();
@@ -24,22 +26,29 @@ const ResourceDetail = ({ resource }) => {
               <div className="columns">
                 <div className="column is-8 is-offset-2">
                   <div className="content is-medium">
-                    <h2 className="subtitle is-4">{resource.createdAt}</h2>
+                    <h2 className="subtitle is-4">
+                      {moment(resource.createdAt).format("LLL")}
+                      <ResourceLable status={resource.status} />
+                    </h2>
                     <h1 className="title">{resource.title}</h1>
                     <p>{resource.description}</p>
                     <p>Time to finish : {resource.timeToFinish} min</p>
-                    <Link
-                      legacyBehavior
-                      href={`/resources/${resource.id}/edit`}
-                    >
-                      <a className="button is-warning">Update</a>
-                    </Link>
-                    <button
-                      onClick={activeResource}
-                      className="button is-success ml-1"
-                    >
-                      Activate
-                    </button>
+                    {resource.status==="inactive" &&
+                      <>
+                        <Link
+                          legacyBehavior
+                          href={`/resources/${resource.id}/edit`}
+                        >
+                          <a className="button is-warning">Update</a>
+                        </Link>
+                        <button
+                          onClick={activeResource}
+                          className="button is-success ml-1"
+                        >
+                          Activate
+                        </button>
+                      </>
+                    }
                   </div>
                 </div>
               </div>
