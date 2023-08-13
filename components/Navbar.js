@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { useState } from "react";
 
 const Navbar=()=>{
+    const [isActive, setIsActive] = useState(false);
+
+    const toggleMenu = () => {
+      setIsActive(!isActive);
+    };
+
     return (
       <nav className="navbar">
         <div className="container">
@@ -10,13 +17,20 @@ const Navbar=()=>{
                 <h1>Content Manager</h1>
               </a>
             </Link>
-            <span className="navbar-burger burger" data-target="navbarMenu">
+            <span
+              className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+              data-target="navbarMenu"
+              onClick={toggleMenu}
+            >
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
-          <div id="navbarMenu" className="navbar-menu">
+          <div
+            id="navbarMenu"
+            className={`navbar-menu ${isActive ? "is-active" : ""}`}
+          >
             <div className="navbar-end">
               <div className=" navbar-item">
                 <div className="control has-icons-left">
