@@ -11,8 +11,8 @@ const Navbar=()=>{
               </a>
             </Link>
             <span className="navbar-burger burger" data-target="navbarMenu">
-              <span>Home</span>
-              <span>Add</span>
+              <span></span>
+              <span></span>
               <span></span>
             </span>
           </div>
