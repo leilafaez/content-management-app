@@ -35,10 +35,10 @@ Before you begin, make sure you have the following installed:
 
 ### Installation
 
-1. Clone this repository:
-   npm install
+1. npm install
+2. Clone this repository:
    git clone https://github.com/leilafaez/resource-management-app.git
-   cd resource-management-app
+ 3. cd resource-management-app
 
 ### Usage
 1. Run the development server:
