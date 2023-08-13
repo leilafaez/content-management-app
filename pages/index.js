@@ -11,7 +11,7 @@ export default function Home({resources}) {
     <Layout>
     <ResourceHighlight resources={resources.slice(0,2)}/>
     <Newsletter/>
-    <ResourceList resources={resources.slice(2)}/>
+    <ResourceList resources={resources.slice(4)}/>
     <Footer/>
     </Layout>
 
