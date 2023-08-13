@@ -40,9 +40,9 @@ const Navbar=()=>{
                   Add
                 </a>
               </Link>
-              <a className="navbar-item is-size-5 has-text-weight-semibold">
+              {/* <a className="navbar-item is-size-5 has-text-weight-semibold">
                 Features
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
