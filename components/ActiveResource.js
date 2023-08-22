@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import moment from "moment/moment";
+import moment from "moment";
 
 const ActiveResource =()=>{
 
@@ -11,12 +11,11 @@ const ActiveResource =()=>{
     
     useEffect(()=>{
        async function fetchResource(){
-        const axiosRes = await axios.get("/api/activeResource");
+        const axiosRes = await axios.get("/api/activeresource");
         const resource = axiosRes.data;
         const timeToFinish= parseInt(resource.timeToFinish,10);
         const elapsedTime = moment().diff(moment(resource.activationTime),"seconds");
         const updatedTimeToFinish = (timeToFinish * 60)-elapsedTime;
-
         if(updatedTimeToFinish >=0){
             resource.timeToFinish =updatedTimeToFinish;
             setSecond(updatedTimeToFinish);
@@ -39,8 +38,8 @@ const ActiveResource =()=>{
     const completeResource = () => {
     axios
         .patch("/api/resources", { ...resource, status: "complete" })
-        .then((_) => location.reload())
-        .catch((_) => alert("cannot complete the resource!"));
+        .then(_ => location.reload())
+        .catch(_ => alert("cannot complete the resource!"));
     };
 
     const hasResource =resource && resource.id;
@@ -52,9 +51,9 @@ const ActiveResource =()=>{
         </h1>
         <div className="time-wrapper">
           {hasResource &&
-            (second > 0 ? (
+            (second > 0 ? 
               <h2 className="elapsed-time">{second}</h2>
-            ) : (
+             : 
               <h2 className="elapsed-time">
                 <button
                   className="button is-success"
@@ -63,17 +62,17 @@ const ActiveResource =()=>{
                   Click and Done!
                 </button>
               </h2>
-            ))}
+            )}
         </div>
-        {hasResource ? (
+        {hasResource ? 
           <Link legacyBehavior href={`/resources/${resource.id}`}>
             <a className="button">go to Resource</a>
           </Link>
-        ) : (
+        : 
           <Link legacyBehavior href="/">
             <a className="button">go to Resources</a>
           </Link>
-        )}
+        }
       </div>
     );
 }
